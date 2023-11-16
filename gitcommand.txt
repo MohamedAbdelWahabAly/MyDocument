@@ -1,0 +1,15 @@
+1- dir 
+2- Git init
+3- Git status
+4- Git add .
+5- Git commit -m "Initialize status"
+6- Git config --global user.name "    "   ---> to determine who is the person that's working with git repo on this particular system 
+7- Git config --global user.email "    "    ---> to determine who is the person that's working with git repo on this particular system
+8- Git log (git log --all to git all commit history ) -> gives you entire history of the changes made onto git repository 
+9-   git checkout  commit id (that's get from git log )             ---> tom move back onto a prior version (lw 3aeiz trg3 bl version aw ba commit mo3yn ) 
+10- Git checkout main ----> moved to main branch 
+11- Git rm --cached filename ---> to go back or to un-stage changes (become untracked )
+12- Git checkout -b name-of-the new-branch  ----> create a new branch and work on the this branch
+13- Git merge branchName  ---> bno2f 3la al main branch aw al branch aly 3aeizeno ya tmarge (fast-forward merge )
+14- git remote add origin https://mohamedabdelwahab@dev.azure.com/mohamedabdelwahab/Devops-test/_git/Devops-test 
+15- git push -u origin main 
