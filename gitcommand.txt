@@ -2,7 +2,7 @@
 2- Git init
 3- Git status
 4- Git add .
-5- Git commit -m "Initialize status"
+5- Git commit -m "Initialize status  "
 6- Git config --global user.name "    "   ---> to determine who is the person that's working with git repo on this particular system 
 7- Git config --global user.email "    "    ---> to determine who is the person that's working with git repo on this particular system
 8- Git log (git log --all to git all commit history ) -> gives you entire history of the changes made onto git repository 
