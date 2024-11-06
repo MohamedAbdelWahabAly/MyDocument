@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flux-api
+  namespace: beta
+  labels:
+    app: api
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: api
+  template:
+    metadata:
+      labels:
+        app: api
+    spec:
+      containers:
+      - name: api-fluxmailer
+        image: us-central1-docker.pkg.dev/es-mini-clients/fluxmailer/api
+        imagePullPolicy: IfNotPresent
+        envFrom:
+          - secretRef:
+              name: beta-fluxmailer-api
+        readinessProbe:
+          httpGet:
+            path: "/"
+            port: 5000
+          initialDelaySeconds: 5
+          timeoutSeconds: 15
+        livenessProbe:
+          httpGet:
+            path: "/"
+            port: 5000
+          initialDelaySeconds: 5
+          timeoutSeconds: 15

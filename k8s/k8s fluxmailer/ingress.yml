@@ -1,0 +1,32 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-fluxmailer
+  namespace: beta
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: "fluxmailer-ip"
+    networking.gke.io/managed-certificates: fluxmailer-cert
+    kubernetes.io/ingress.class: "gce"
+spec:
+  ingressClassName: gce
+  rules:
+  - host: beta-fluxmailer-api.tonystarkapi.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: api-service
+            port:
+              number: 5000
+  - host: beta-fluxmailer-web.tonystarkapi.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: web-service
+            port:
+              number: 3000

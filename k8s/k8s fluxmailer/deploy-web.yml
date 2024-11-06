@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flux-web
+  namespace: beta
+  labels:
+    app: web
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+      - name: web-fluxmailer
+        image: us-central1-docker.pkg.dev/es-mini-clients/fluxmailer/web@sha256:24bc9d4a67bf5a8e2251e0f64ffeb5073d25c182688f319afc7d5fd1deef74be
+        imagePullPolicy: IfNotPresent
+        envFrom:
+          - secretRef:
+              name: beta-fluxmailer-web
+        readinessProbe:
+          httpGet:
+            path: "/health-check"
+            port: 3000
+          initialDelaySeconds: 10
+          timeoutSeconds: 15
+
+        livenessProbe:
+          httpGet:
+            path: "/health-check"
+            port: 3000
+          initialDelaySeconds: 5
+          timeoutSeconds: 15
